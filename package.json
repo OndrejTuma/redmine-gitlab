@@ -1,0 +1,19 @@
+{
+  "name": "redmine-gitlab",
+  "version": "0.1.0",
+  "description": "A project connecting Redmine tasks with GitLab branches providing useful functionality between the two",
+  "main": "index.js",
+  "repository": "git@github.com:Rootre/redmine-gitlab.git",
+  "author": "Ondřej Tůma <ondr@centrum.cz>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "^9.4.4",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}
