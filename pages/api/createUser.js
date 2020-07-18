@@ -13,6 +13,7 @@ const createUsers = async (req, res) => {
     })
     const result = await user.save()
 
+
     res.statusCode = 200
     res.end(JSON.stringify(result))
   } catch (e) {

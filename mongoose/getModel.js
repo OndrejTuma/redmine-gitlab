@@ -1,9 +1,9 @@
 import {model, models} from 'mongoose'
 
-export default function (name) {
+export default function getModel(name, schema) {
   if (models.hasOwnProperty(name)) {
     return models[name]
   }
 
-  return model.call(...arguments)
+  return model.call(this, ...arguments)
 }
