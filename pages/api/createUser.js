@@ -1,18 +1,14 @@
-import UserModel from '../../mongoose/UserModel'
+import UserModel from '../../mongoose/models/UserModel'
 import withConnection from '../../mongoose/withConnection'
 
 const createUsers = async (req, res) => {
-  const {name, password} = JSON.parse(req.body)
+  const userData = JSON.parse(req.body)
 
   res.setHeader('Content-Type', 'application/json')
 
   try {
-    const user = new UserModel({
-      name,
-      password,
-    })
+    const user = new UserModel(userData)
     const result = await user.save()
-
 
     res.statusCode = 200
     res.end(JSON.stringify(result))
@@ -22,6 +18,7 @@ const createUsers = async (req, res) => {
     res.end(JSON.stringify({
       error: true,
       message: e.message,
+      errors: e.errors,
     }))
   }
 }

@@ -1,4 +1,4 @@
-import getModel from './getModel'
+import getModel from '../getModel'
 import { Schema } from 'mongoose'
 
 const UserModel = getModel('user', new Schema({
