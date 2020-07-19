@@ -8,23 +8,18 @@
   "license": "MIT",
   "scripts": {
     "dev": "next",
-    "initDb": "node server/initMongo.js",
     "build": "next build",
-    "start": "yarn initDb && next start"
+    "start": "next start"
   },
   "dependencies": {
     "cookie": "^0.4.1",
-    "http": "^0.0.1-security",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.20",
     "next": "^9.4.4",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "url": "^0.11.0"
+    "react-dom": "^16.13.1"
   },
   "devDependencies": {
-    "cross-env": "^7.0.2",
-    "dotenv": "^8.2.0",
-    "mongodb": "^3.5.9"
+    "cross-env": "^7.0.2"
   }
 }

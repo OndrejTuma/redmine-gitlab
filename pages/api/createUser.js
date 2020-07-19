@@ -1,26 +1,11 @@
 import UserModel from '../../mongoose/models/UserModel'
 import withConnection from '../../mongoose/withConnection'
+import withErrorHandler from '../../server/middleware/withErrorHandler'
 
-const createUsers = async (req, res) => {
-  const userData = JSON.parse(req.body)
+const createUsers = (req) => {
+  const user = new UserModel(req.body)
 
-  res.setHeader('Content-Type', 'application/json')
-
-  try {
-    const user = new UserModel(userData)
-    const result = await user.save()
-
-    res.statusCode = 200
-    res.end(JSON.stringify(result))
-  } catch (e) {
-    console.error(e)
-    res.statusCode = 400
-    res.end(JSON.stringify({
-      error: true,
-      message: e.message,
-      errors: e.errors,
-    }))
-  }
+  return user.save()
 }
 
-export default withConnection(createUsers)
+export default withConnection(withErrorHandler(createUsers))

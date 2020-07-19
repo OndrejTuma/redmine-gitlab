@@ -1,12 +1,10 @@
-import withDatabase from '../../server/middleware/withDatabase'
+import withConnection from '../../mongoose/withConnection'
+import UserModel from '../../mongoose/models/UserModel'
+import withErrorHandler from '../../server/middleware/withErrorHandler'
+import withBody from '../../server/middleware/withBody'
 
-const getUsers = async (req, res) => {
-  //const user = await UserModel.findOne({id: req.body.id})
-  res.statusCode = 200
-  res.setHeader('Content-Type', 'application/json')
-  res.end(JSON.stringify({
-    user: {name: 'foo', password: 'ole'},
-  }))
+const getUsers = (req) => {
+  return UserModel.findOne(req.body)
 }
 
-export default withDatabase(getUsers)
+export default withConnection(withErrorHandler(withBody(getUsers)))
