@@ -13,7 +13,7 @@ export default () => {
         <input defaultValue={'test'} type={'text'} placeholder={'username'} name={'name'} ref={nameRef}/>
         <input defaultValue={'trest'} type={'password'} placeholder={'password'} name={'password'} ref={passRef}/>
         <button onClick={() => {
-          fetch('/api/createUser', {
+          fetch('/api/getUser', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -22,8 +22,8 @@ export default () => {
               name: nameRef.current.value,
               password: passRef.current.value,
             })
-          }).catch(e => console.error(e))
-        }}>create user</button>
+          }).then(res => res.json()).then(user => console.log('user', user)).catch(e => console.error(e))
+        }}>login</button>
       </fieldset>
     </div>
   )
