@@ -13,6 +13,7 @@ services:
       - mongo
     volumes:
       - ../../:/usr/src/app/
+      - /usr/src/app/.next
       - ./run.sh:/run.sh
       - app-node-modules:/usr/src/app/node_modules/
 

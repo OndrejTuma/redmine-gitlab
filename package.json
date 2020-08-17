@@ -13,11 +13,14 @@
   },
   "dependencies": {
     "cookie": "^0.4.1",
+    "formik": "^2.1.5",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.20",
     "next": "^9.4.4",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "react-query": "^2.5.14",
+    "yup": "^0.29.3"
   },
   "devDependencies": {
     "cross-env": "^7.0.2"

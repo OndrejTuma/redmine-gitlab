@@ -1,8 +1,12 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "./src",
     "paths": {
-      "@/components/*": ["components/*"]
+      "@/components/*": ["components/*"],
+      "@/features/*": ["features/*"],
+      "@/mongoose/*": ["../mongoose/*"],
+      "@/server/*": ["../server/*"],
+      "@/utils/*": ["utils/*"]
     }
   }
 }

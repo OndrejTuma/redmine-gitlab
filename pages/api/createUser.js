@@ -1,6 +1,6 @@
 import UserModel from '../../mongoose/models/UserModel'
 import withConnection from '../../mongoose/withConnection'
-import withErrorHandler from '../../server/middleware/withErrorHandler'
+import withResponseResolver from '../../server/middleware/withResponseResolver'
 
 const createUsers = (req) => {
   const user = new UserModel(req.body)
@@ -8,4 +8,4 @@ const createUsers = (req) => {
   return user.save()
 }
 
-export default withConnection(withErrorHandler(createUsers))
+export default withConnection(withResponseResolver(createUsers))
