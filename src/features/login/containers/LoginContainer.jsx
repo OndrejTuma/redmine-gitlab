@@ -2,15 +2,15 @@ import { useRouter } from 'next/router'
 import { useMutation } from 'react-query'
 
 import basicFetch from '@/utils/basicFetch'
-import tokenName from '@/consts/tokenName'
 
 import Login from '../components/Login'
+import saveTokenToCookies from '@/utils/authToken/saveTokenToCookies'
 
 const LoginContainer = () => {
   const router = useRouter()
   const [login, { error, isLoading }] = useMutation(basicFetch('/api/user/login', 'POST'), {
-    onSuccess: data => {
-      document.cookie += `; ${tokenName}=${data.token}`
+    onSuccess: ({ token }) => {
+      saveTokenToCookies(token)
       router.push('/dashboard')
     },
   })

@@ -1,15 +1,23 @@
-import jwt from 'jsonwebtoken'
 import cookie from 'cookie'
 
-import tokenName from '@/consts/tokenName'
+import verifyToken from '@/utils/authToken/verifyToken'
+import parseTokenFromCookies from '@/utils/authToken/parseTokenFromCookies'
 
 export default function withTokenVerification(handler) {
   return function (req, res) {
-    const token = cookie.parse(req.headers.cookie)[tokenName]
+    const token = parseTokenFromCookies(req.headers.cookie)
+    const verify = verifyToken(token)
 
-    const verify = jwt.verify(token, process.env.JWT_SALT)
+    if (verify.error) {
+      // remove cookie
+    } else {
+      res.setHeader('Set-Cookie', cookie.serialize('name', String(query.name), {
+        httpOnly: true,
+        maxAge: 60 * 60 * 24 * 7 // 1 week
+      }));
+    }
 
-    console.log(verify)
+    console.log('verify', verify)
 
     return handler(req, res)
   }
