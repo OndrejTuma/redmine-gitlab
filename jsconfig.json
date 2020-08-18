@@ -3,6 +3,7 @@
     "baseUrl": "./src",
     "paths": {
       "@/components/*": ["components/*"],
+      "@/consts/*": ["consts/*"],
       "@/features/*": ["features/*"],
       "@/mongoose/*": ["../mongoose/*"],
       "@/server/*": ["../server/*"],

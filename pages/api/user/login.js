@@ -1,7 +1,8 @@
+import jwt from 'jsonwebtoken'
 import withConnection from '@/mongoose/withConnection'
 import UserModel from '@/mongoose/models/UserModel'
 import withBody from '@/server/middleware/withBody'
-import withErrorHandler from '../../../server/middleware/withErrorHandler'
+import withErrorHandler from '@/server/middleware/withErrorHandler'
 
 const login = async (req, res) => {
   const user = await UserModel.findOne(JSON.parse(req.body))
@@ -16,11 +17,12 @@ const login = async (req, res) => {
     }))
   }
 
-  // TODO: create jwt access token here
+  const token = jwt.sign({ data: user.name }, process.env.JWT_SALT, { expiresIn: '1h' })
+
   res.statusCode = 200
   res.end(JSON.stringify({
     success: true,
-    user,
+    token,
   }))
 }
 
