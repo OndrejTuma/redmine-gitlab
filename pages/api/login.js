@@ -3,6 +3,8 @@ import UserModel from '@/mongoose/models/UserModel'
 import withBody from '@/server/middleware/withBody'
 import withErrorHandler from '@/server/middleware/withErrorHandler'
 import signToken from '@/utils/authToken/signToken'
+import basicFetch from '@/utils/basicFetch'
+import { REDMINE_URL } from '@/consts/urls'
 
 const login = async (req, res) => {
   const user = await UserModel.findOne(req.body)
@@ -19,9 +21,19 @@ const login = async (req, res) => {
     return
   }
 
+  const redmineUser = await basicFetch(`${REDMINE_URL}/users/current.json?key=${user.redmineToken}`)()
+    .then(data => data.user)
+
   const token = signToken({
     id: user._id,
     name: user.name,
+    redmine: {
+      token: user.redmineToken,
+      id: redmineUser.id,
+    },
+    gitlab: {
+      token: user.gitlabToken,
+    },
   })
 
   res.statusCode = 200

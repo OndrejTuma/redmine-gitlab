@@ -1,8 +1,21 @@
 const basicFetch = (url, method) => async variables => {
-  const result = await fetch(url, {
+  const opts = {
     method,
-    body: JSON.stringify(variables)
-  })
+    mode: 'no-cors',
+  }
+
+  if (method === 'GET') {
+    if (typeof variables === 'object') {
+      const qs = new URLSearchParams(variables)
+      url += `${url.indexOf('?') ? '&' : '?'}${qs.toString()}`
+    }
+  } else {
+    Object.assign(opts, {
+      body: JSON.stringify(variables)
+    })
+  }
+
+  const result = await fetch(url, opts)
   const data = await result.json()
 
   if (!result.ok) {

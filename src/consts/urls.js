@@ -1,0 +1,1 @@
+export const REDMINE_URL = 'https://task.siteone.cz'

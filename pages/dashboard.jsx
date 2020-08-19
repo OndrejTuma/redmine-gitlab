@@ -3,11 +3,15 @@ import parseTokenFromCookies from '@/utils/authToken/parseTokenFromCookies'
 import verifyToken from '@/utils/authToken/verifyToken'
 import isomorphicRedirect from '@/utils/isomorphicRedirect'
 import tokenName from '@/consts/tokenName'
+import UserContext from '@/contexts/UserContext'
+import RedmineContainer from '@/features/redmine/containers/RedmineContainer'
 
-export default ({user}) => (
+export default ({ user }) => (
   <div>
     <h1>Welcome {user.name}</h1>
-    <pre><code>{JSON.stringify(user, null, 4)}</code></pre>
+    <UserContext.Provider value={user}>
+      <RedmineContainer/>
+    </UserContext.Provider>
   </div>
 )
 
@@ -18,7 +22,7 @@ export async function getServerSideProps(context) {
 
   if (user.error) {
     context.res.setHeader('Set-Cookie', cookie.serialize(tokenName, ''))
-    isomorphicRedirect('/', context)
+    isomorphicRedirect('/', context.res)
     return { props: {} }
   }
 

@@ -3,12 +3,12 @@ import Router from 'next/router'
 /**
  * Isomorphic redirect
  * @param {string} url - url to redirect to
- * @param {object} [ctx] - Next.js context object
+ * @param {object} [res] - response object
  */
-function isomorphicRedirect(url, ctx = {}) {
-  if (ctx.res) {
-    ctx.res.writeHead(302, { Location: url })
-    ctx.res.end()
+function isomorphicRedirect(url, res) {
+  if (res) {
+    res.writeHead(302, { Location: url })
+    res.end()
   } else {
     Router.push(url)
   }

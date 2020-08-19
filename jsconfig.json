@@ -4,6 +4,7 @@
     "paths": {
       "@/components/*": ["components/*"],
       "@/consts/*": ["consts/*"],
+      "@/contexts/*": ["contexts/*"],
       "@/features/*": ["features/*"],
       "@/mongoose/*": ["../mongoose/*"],
       "@/server/*": ["../server/*"],
