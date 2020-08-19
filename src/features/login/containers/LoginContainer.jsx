@@ -8,7 +8,7 @@ import saveTokenToCookies from '@/utils/authToken/saveTokenToCookies'
 
 const LoginContainer = () => {
   const router = useRouter()
-  const [login, { error, isLoading }] = useMutation(basicFetch('/api/user/login', 'POST'), {
+  const [login, { error, isLoading }] = useMutation(basicFetch('/api/login', 'POST'), {
     onSuccess: ({ token }) => {
       saveTokenToCookies(token)
       router.push('/dashboard')

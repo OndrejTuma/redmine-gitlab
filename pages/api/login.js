@@ -5,7 +5,7 @@ import withErrorHandler from '@/server/middleware/withErrorHandler'
 import signToken from '@/utils/authToken/signToken'
 
 const login = async (req, res) => {
-  const user = await UserModel.findOne(JSON.parse(req.body))
+  const user = await UserModel.findOne(req.body)
 
   res.setHeader('Content-Type', 'application/json')
 

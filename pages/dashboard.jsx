@@ -4,14 +4,15 @@ import verifyToken from '@/utils/authToken/verifyToken'
 import isomorphicRedirect from '@/utils/isomorphicRedirect'
 import tokenName from '@/consts/tokenName'
 
-export default (props) => (
+export default ({user}) => (
   <div>
-    <h1>Welcome</h1>
-    <pre><code>{JSON.stringify(props, null, 4)}</code></pre>
+    <h1>Welcome {user.name}</h1>
+    <pre><code>{JSON.stringify(user, null, 4)}</code></pre>
   </div>
 )
 
 export async function getServerSideProps(context) {
+  // TODO: make this piece reusable
   const token = parseTokenFromCookies(context.req.headers.cookie)
   const user = verifyToken(token)
 
@@ -20,8 +21,6 @@ export async function getServerSideProps(context) {
     isomorphicRedirect('/', context)
     return { props: {} }
   }
-
-  // const result = await fetch(`/api/user/${verified.userId}`)
 
   return {
     props: {
