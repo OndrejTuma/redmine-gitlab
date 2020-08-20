@@ -20,26 +20,3 @@ export async function getServerSideProps(context) {
     },
   }
 }
-
-/*
-export async function getStaticProps(context) {
-  const token = parseTokenFromCookies(context)
-  const user = verifyToken(token)
-
-  if (user.error) {
-    return { props: {} }
-  }
-
-  try {
-    const issueStatuses = await basicFetch(`${REDMINE_URL}/issue_statuses.json?key=${user.redmine.token}`)()
-
-    return {
-      props: {
-        issueStatuses,
-      },
-    }
-  } catch (e) {
-    return { props: {} }
-  }
-}
- */
