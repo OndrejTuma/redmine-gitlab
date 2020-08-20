@@ -1,26 +1,15 @@
-const Redmine = ({issues, isLoading, error}) => {
+import TaskList from '@/features/redmine/components/TaskList'
+import IssueStatuses from '@/features/redmine/components/IssueStatuses'
 
-  if (error) {
-    return (
-      <h3 style={{color: 'red'}}>Chyba: {error}</h3>
-    )
-  }
-
+const Redmine = props => {
   return (
     <div>
       <h2>Redmine Issues:</h2>
-      {isLoading ? (
-        <p><i>čekejte...</i></p>
-      ) : (
-        <ul>
-          {issues.issues.map(issue => (
-            <li key={issue.id}>
-              {console.log('issue', issue)}
-              {issue.subject}
-            </li>
-          ))}
-        </ul>
-      )}
+      <IssueStatuses statuses={props.statuses && props.statuses.issue_statuses}>
+        {statuses => (
+          <TaskList statuses={statuses} {...props}/>
+        )}
+      </IssueStatuses>
     </div>
   )
 }

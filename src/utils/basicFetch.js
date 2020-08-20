@@ -1,7 +1,6 @@
 const basicFetch = (url, method) => async variables => {
   const opts = {
     method,
-    mode: 'no-cors',
   }
 
   if (method === 'GET') {

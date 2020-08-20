@@ -17,9 +17,9 @@ const LoginContainer = () => {
 
   return (
     <Login
+      error={error}
       isLoading={isLoading}
       login={login}
-      error={error}
     />
   )
 }

@@ -4,7 +4,7 @@ import * as Yup from 'yup'
 const Login = ({error, isLoading, login}) => {
   return (
     <div>
-      {error && <p>{error.message}</p>}
+      {error && <p style={{color: 'red'}}>{error.message}</p>}
       <Formik
         initialValues={{ name: '', password: '' }}
         validationSchema={Yup.object({

@@ -1,9 +1,14 @@
-import Cookies from 'js-cookie'
+import { setCookie } from 'nookies'
 
 import tokenName from '@/consts/tokenName'
 
-function saveTokenToCookies(token) {
-  Cookies.set(tokenName, token)
+/**
+ * @param {string} token
+ * @param {object} [ctx] - Next.js context object
+ * @return {{}}
+ */
+function saveTokenToCookies(token, ctx) {
+  return setCookie(ctx, tokenName, token)
 }
 
 export default saveTokenToCookies

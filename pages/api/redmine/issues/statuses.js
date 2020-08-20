@@ -5,12 +5,11 @@ import withTokenVerification from '@/server/middleware/withTokenVerification'
 import basicFetch from '@/utils/basicFetch'
 import { REDMINE_URL } from '@/consts/urls'
 
-const issues = (req) => {
+const issueStatuses = (req) => {
   switch (req.method) {
     case 'GET':
-      const qs = new URLSearchParams(req.query)
-      return basicFetch(`${REDMINE_URL}/issues.json?${qs.toString()}`)()
+      return basicFetch(`${REDMINE_URL}/issue_statuses.json?${new URLSearchParams(req.query).toString()}`)()
   }
 }
 
-export default withConnection(withTokenVerification(withResponseResolver(withBody(issues))))
+export default withConnection(withTokenVerification(withResponseResolver(withBody(issueStatuses))))
