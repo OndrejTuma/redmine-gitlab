@@ -14,7 +14,7 @@
   "dependencies": {
     "formik": "^2.1.5",
     "jsonwebtoken": "^8.5.1",
-    "lodash": "^4.17.20",
+    "lodash": "^4.17.21",
     "mongoose": "^5.9.20",
     "next": "^9.4.4",
     "nookies": "^2.4.0",
